@@ -16,20 +16,11 @@
 package org.robovm.apple.corebluetooth;
 
 /*<imports>*/
-import java.io.*;
-import java.nio.*;
 import java.util.*;
-import org.robovm.objc.*;
-import org.robovm.objc.annotation.*;
-import org.robovm.objc.block.*;
-import org.robovm.rt.*;
-import org.robovm.rt.annotation.*;
+
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
-import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
-import org.robovm.apple.corefoundation.*;
-import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -93,27 +84,20 @@ import org.robovm.apple.dispatch.*;
     /*</constructors>*/
 
     /*<methods>*/
-    public boolean has(NSString key) {
-        return data.containsKey(key);
-    }
-    public NSObject get(NSString key) {
-        if (has(key)) {
-            return data.get(key);
-        }
-        return null;
-    }
-    public CBPeripheralManagerOptions set(NSString key, NSObject value) {
-        data.put(key, value);
-        return this;
-    }
-    
+
 
     /**
      * @since Available in iOS 7.0 and later.
      */
-    public boolean showsPowerAlert() {
-        if (has(Keys.ShowPowerAlert())) {
-            NSNumber val = (NSNumber) get(Keys.ShowPowerAlert());
+    public boolean isShowingPowerAlert() {
+        NSString key = Keys.ShowPowerAlert();
+        if (data.containsKey(key)) {
+            NSObject result = null;
+            NSString key1 = Keys.ShowPowerAlert();
+            if (data.containsKey(key1)) {
+                result = data.get(key1);
+            }
+            NSNumber val = (NSNumber) result;
             return val.booleanValue();
         }
         return false;
@@ -121,16 +105,24 @@ import org.robovm.apple.dispatch.*;
     /**
      * @since Available in iOS 7.0 and later.
      */
-    public CBPeripheralManagerOptions setShowsPowerAlert(boolean showsPowerAlert) {
-        set(Keys.ShowPowerAlert(), NSNumber.valueOf(showsPowerAlert));
+    public CBPeripheralManagerOptions setShowPowerAlert(boolean showAlert) {
+        NSString key = Keys.ShowPowerAlert();
+        NSObject value = NSNumber.valueOf(showAlert);
+        data.put(key, value);
         return this;
     }
     /**
      * @since Available in iOS 7.0 and later.
      */
     public String getRestoreIdentifier() {
-        if (has(Keys.RestoreIdentifier())) {
-            NSString val = (NSString) get(Keys.RestoreIdentifier());
+        NSString key = Keys.RestoreIdentifier();
+        if (data.containsKey(key)) {
+            NSObject result = null;
+            NSString key1 = Keys.RestoreIdentifier();
+            if (data.containsKey(key1)) {
+                result = data.get(key1);
+            }
+            NSString val = (NSString) result;
             return val.toString();
         }
         return null;
@@ -138,8 +130,10 @@ import org.robovm.apple.dispatch.*;
     /**
      * @since Available in iOS 7.0 and later.
      */
-    public CBPeripheralManagerOptions setRestoreIdentifier(String restoreIdentifier) {
-        set(Keys.RestoreIdentifier(), new NSString(restoreIdentifier));
+    public CBPeripheralManagerOptions setRestoreIdentifier(String identifier) {
+        NSString key = Keys.RestoreIdentifier();
+        NSObject value = new NSString(identifier);
+        data.put(key, value);
         return this;
     }
     /*</methods>*/
