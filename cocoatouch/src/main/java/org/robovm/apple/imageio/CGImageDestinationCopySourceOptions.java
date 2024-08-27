@@ -16,20 +16,12 @@
 package org.robovm.apple.imageio;
 
 /*<imports>*/
-import java.io.*;
-import java.nio.*;
 import java.util.*;
-import org.robovm.objc.*;
-import org.robovm.objc.annotation.*;
-import org.robovm.objc.block.*;
-import org.robovm.rt.*;
-import org.robovm.rt.annotation.*;
+
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
-import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corefoundation.*;
-import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -93,27 +85,19 @@ import org.robovm.apple.coregraphics.*;
     /*</constructors>*/
 
     /*<methods>*/
-    public boolean has(CFString key) {
-        return data.containsKey(key);
-    }
-    public <T extends NativeObject> T get(CFString key, Class<T> type) {
-        if (has(key)) {
-            return data.get(key, type);
-        }
-        return null;
-    }
-    public CGImageDestinationCopySourceOptions set(CFString key, NativeObject value) {
-        data.put(key, value);
-        return this;
-    }
-    
+
 
     /**
      * @since Available in iOS 7.0 and later.
      */
     public CGImageMetadata getMetadata() {
-        if (has(Keys.DestinationMetadata())) {
-            CGImageMetadata val = get(Keys.DestinationMetadata(), CGImageMetadata.class);
+        CFString key = Keys.DestinationMetadata();
+        if (data.containsKey(key)) {
+            CGImageMetadata val = null;
+            CFString key1 = Keys.DestinationMetadata();
+            if (data.containsKey(key1)) {
+                val = data.get(key1, CGImageMetadata.class);
+            }
             return val;
         }
         return null;
@@ -122,15 +106,21 @@ import org.robovm.apple.coregraphics.*;
      * @since Available in iOS 7.0 and later.
      */
     public CGImageDestinationCopySourceOptions setMetadata(CGImageMetadata metadata) {
-        set(Keys.DestinationMetadata(), metadata);
+        CFString key = Keys.DestinationMetadata();
+        data.put(key, metadata);
         return this;
     }
     /**
      * @since Available in iOS 7.0 and later.
      */
-    public boolean mergesMetadata() {
-        if (has(Keys.DestinationMergeMetadata())) {
-            CFBoolean val = get(Keys.DestinationMergeMetadata(), CFBoolean.class);
+    public boolean isMergingMetadata() {
+        CFString key = Keys.DestinationMergeMetadata();
+        if (data.containsKey(key)) {
+            CFBoolean val = null;
+            CFString key1 = Keys.DestinationMergeMetadata();
+            if (data.containsKey(key1)) {
+                val = data.get(key1, CFBoolean.class);
+            }
             return val.booleanValue();
         }
         return false;
@@ -138,16 +128,23 @@ import org.robovm.apple.coregraphics.*;
     /**
      * @since Available in iOS 7.0 and later.
      */
-    public CGImageDestinationCopySourceOptions setMergesMetadata(boolean mergesMetadata) {
-        set(Keys.DestinationMergeMetadata(), CFBoolean.valueOf(mergesMetadata));
+    public CGImageDestinationCopySourceOptions setMergeMetadata(boolean merge) {
+        CFString key = Keys.DestinationMergeMetadata();
+        NativeObject value = CFBoolean.valueOf(merge);
+        data.put(key, value);
         return this;
     }
     /**
      * @since Available in iOS 7.0 and later.
      */
     public boolean shouldExcludeXMP() {
-        if (has(Keys.MetadataShouldExcludeXMP())) {
-            CFBoolean val = get(Keys.MetadataShouldExcludeXMP(), CFBoolean.class);
+        CFString key = Keys.MetadataShouldExcludeXMP();
+        if (data.containsKey(key)) {
+            CFBoolean val = null;
+            CFString key1 = Keys.MetadataShouldExcludeXMP();
+            if (data.containsKey(key1)) {
+                val = data.get(key1, CFBoolean.class);
+            }
             return val.booleanValue();
         }
         return false;
@@ -155,16 +152,23 @@ import org.robovm.apple.coregraphics.*;
     /**
      * @since Available in iOS 7.0 and later.
      */
-    public CGImageDestinationCopySourceOptions setShouldExcludeXMP(boolean shouldExcludeXMP) {
-        set(Keys.MetadataShouldExcludeXMP(), CFBoolean.valueOf(shouldExcludeXMP));
+    public CGImageDestinationCopySourceOptions setShouldExcludeXMP(boolean exclude) {
+        CFString key = Keys.MetadataShouldExcludeXMP();
+        NativeObject value = CFBoolean.valueOf(exclude);
+        data.put(key, value);
         return this;
     }
     /**
      * @since Available in iOS 8.0 and later.
      */
     public boolean shouldExcludeGPS() {
-        if (has(Keys.MetadataShouldExcludeGPS())) {
-            CFBoolean val = get(Keys.MetadataShouldExcludeGPS(), CFBoolean.class);
+        CFString key = Keys.MetadataShouldExcludeGPS();
+        if (data.containsKey(key)) {
+            CFBoolean val = null;
+            CFString key1 = Keys.MetadataShouldExcludeGPS();
+            if (data.containsKey(key1)) {
+                val = data.get(key1, CFBoolean.class);
+            }
             return val.booleanValue();
         }
         return false;
@@ -172,16 +176,23 @@ import org.robovm.apple.coregraphics.*;
     /**
      * @since Available in iOS 8.0 and later.
      */
-    public CGImageDestinationCopySourceOptions setShouldExcludeGPS(boolean shouldExcludeGPS) {
-        set(Keys.MetadataShouldExcludeGPS(), CFBoolean.valueOf(shouldExcludeGPS));
+    public CGImageDestinationCopySourceOptions setShouldExcludeGPS(boolean exclude) {
+        CFString key = Keys.MetadataShouldExcludeGPS();
+        NativeObject value = CFBoolean.valueOf(exclude);
+        data.put(key, value);
         return this;
     }
     /**
      * @since Available in iOS 7.0 and later.
      */
     public String getDateTime() {
-        if (has(Keys.DestinationDateTime())) {
-            CFString val = get(Keys.DestinationDateTime(), CFString.class);
+        CFString key = Keys.DestinationDateTime();
+        if (data.containsKey(key)) {
+            CFString val = null;
+            CFString key1 = Keys.DestinationDateTime();
+            if (data.containsKey(key1)) {
+                val = data.get(key1, CFString.class);
+            }
             return val.toString();
         }
         return null;
@@ -190,15 +201,22 @@ import org.robovm.apple.coregraphics.*;
      * @since Available in iOS 7.0 and later.
      */
     public CGImageDestinationCopySourceOptions setDateTime(String dateTime) {
-        set(Keys.DestinationDateTime(), new CFString(dateTime));
+        CFString key = Keys.DestinationDateTime();
+        NativeObject value = new CFString(dateTime);
+        data.put(key, value);
         return this;
     }
     /**
      * @since Available in iOS 7.0 and later.
      */
     public CGImagePropertyOrientation getOrientation() {
-        if (has(Keys.DestinationOrientation())) {
-            CFNumber val = get(Keys.DestinationOrientation(), CFNumber.class);
+        CFString key = Keys.DestinationOrientation();
+        if (data.containsKey(key)) {
+            CFNumber val = null;
+            CFString key1 = Keys.DestinationOrientation();
+            if (data.containsKey(key1)) {
+                val = data.get(key1, CFNumber.class);
+            }
             return CGImagePropertyOrientation.valueOf(val.longValue());
         }
         return null;
@@ -207,7 +225,9 @@ import org.robovm.apple.coregraphics.*;
      * @since Available in iOS 7.0 and later.
      */
     public CGImageDestinationCopySourceOptions setOrientation(CGImagePropertyOrientation orientation) {
-        set(Keys.DestinationOrientation(), CFNumber.valueOf(orientation.value()));
+        CFString key = Keys.DestinationOrientation();
+        NativeObject value = CFNumber.valueOf(orientation.value());
+        data.put(key, value);
         return this;
     }
     /*</methods>*/
@@ -215,7 +235,8 @@ import org.robovm.apple.coregraphics.*;
      * @since Available in iOS 7.0 and later.
      */
     public CGImageDestinationCopySourceOptions setDateTime(NSDate dateTime) {
-        set(Keys.DestinationDateTime(), dateTime);
+        CFString key = Keys.DestinationDateTime();
+        data.put(key, dateTime);
         return this;
     }
     
