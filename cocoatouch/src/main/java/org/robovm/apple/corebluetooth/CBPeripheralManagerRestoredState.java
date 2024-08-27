@@ -16,20 +16,11 @@
 package org.robovm.apple.corebluetooth;
 
 /*<imports>*/
-import java.io.*;
-import java.nio.*;
 import java.util.*;
-import org.robovm.objc.*;
-import org.robovm.objc.annotation.*;
-import org.robovm.objc.block.*;
-import org.robovm.rt.*;
-import org.robovm.rt.annotation.*;
+
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
-import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
-import org.robovm.apple.corefoundation.*;
-import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -92,23 +83,20 @@ import org.robovm.apple.dispatch.*;
     /*</constructors>*/
 
     /*<methods>*/
-    public boolean has(NSString key) {
-        return data.containsKey(key);
-    }
-    public NSObject get(NSString key) {
-        if (has(key)) {
-            return data.get(key);
-        }
-        return null;
-    }
-    
+
 
     /**
      * @since Available in iOS 7.0 and later.
      */
     public NSArray<CBMutableService> getServices() {
-        if (has(Keys.Services())) {
-            NSArray<CBMutableService> val = (NSArray<CBMutableService>) get(Keys.Services());
+        NSString key = Keys.Services();
+        if (data.containsKey(key)) {
+            NSObject result = null;
+            NSString key1 = Keys.Services();
+            if (data.containsKey(key1)) {
+                result = data.get(key1);
+            }
+            NSArray<CBMutableService> val = (NSArray<CBMutableService>) result;
             return val;
         }
         return null;
@@ -117,8 +105,14 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 7.0 and later.
      */
     public CBAdvertisementData getAdvertisementData() {
-        if (has(Keys.AdvertisementData())) {
-            NSDictionary<NSString, NSObject> val = (NSDictionary<NSString, NSObject>) get(Keys.AdvertisementData());
+        NSString key = Keys.AdvertisementData();
+        if (data.containsKey(key)) {
+            NSObject result = null;
+            NSString key1 = Keys.AdvertisementData();
+            if (data.containsKey(key1)) {
+                result = data.get(key1);
+            }
+            NSDictionary<NSString, NSObject> val = (NSDictionary<NSString, NSObject>) result;
             return new CBAdvertisementData(val);
         }
         return null;
