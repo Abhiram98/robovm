@@ -16,18 +16,10 @@
 package org.robovm.apple.imageio;
 
 /*<imports>*/
-import java.io.*;
-import java.nio.*;
 import java.util.*;
-import org.robovm.objc.*;
-import org.robovm.objc.annotation.*;
-import org.robovm.objc.block.*;
-import org.robovm.rt.*;
-import org.robovm.rt.annotation.*;
+
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
-import org.robovm.rt.bro.ptr.*;
-import org.robovm.apple.foundation.*;
 import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.coregraphics.*;
 /*</imports>*/
@@ -93,27 +85,19 @@ import org.robovm.apple.coregraphics.*;
     /*</constructors>*/
 
     /*<methods>*/
-    public boolean has(CFString key) {
-        return data.containsKey(key);
-    }
-    public <T extends NativeObject> T get(CFString key, Class<T> type) {
-        if (has(key)) {
-            return data.get(key, type);
-        }
-        return null;
-    }
-    public CGImageDestinationProperties set(CFString key, NativeObject value) {
-        data.put(key, value);
-        return this;
-    }
-    
+
 
     /**
      * @since Available in iOS 4.0 and later.
      */
     public double getLossyCompressionQuality() {
-        if (has(Keys.LossyCompressionQuality())) {
-            CFNumber val = get(Keys.LossyCompressionQuality(), CFNumber.class);
+        CFString key = Keys.LossyCompressionQuality();
+        if (data.containsKey(key)) {
+            CFNumber val = null;
+            CFString key1 = Keys.LossyCompressionQuality();
+            if (data.containsKey(key1)) {
+                val = data.get(key1, CFNumber.class);
+            }
             return val.doubleValue();
         }
         return 1;
@@ -121,16 +105,23 @@ import org.robovm.apple.coregraphics.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public CGImageDestinationProperties setLossyCompressionQuality(double lossyCompressionQuality) {
-        set(Keys.LossyCompressionQuality(), CFNumber.valueOf(lossyCompressionQuality));
+    public CGImageDestinationProperties setLossyCompressionQuality(double quality) {
+        CFString key = Keys.LossyCompressionQuality();
+        NativeObject value = CFNumber.valueOf(quality);
+        data.put(key, value);
         return this;
     }
     /**
      * @since Available in iOS 4.0 and later.
      */
     public CGColor getBackgroundColor() {
-        if (has(Keys.BackgroundColor())) {
-            CGColor val = get(Keys.BackgroundColor(), CGColor.class);
+        CFString key = Keys.BackgroundColor();
+        if (data.containsKey(key)) {
+            CGColor val = null;
+            CFString key1 = Keys.BackgroundColor();
+            if (data.containsKey(key1)) {
+                val = data.get(key1, CGColor.class);
+            }
             return val;
         }
         return null;
@@ -138,16 +129,22 @@ import org.robovm.apple.coregraphics.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public CGImageDestinationProperties setBackgroundColor(CGColor backgroundColor) {
-        set(Keys.BackgroundColor(), backgroundColor);
+    public CGImageDestinationProperties setBackgroundColor(CGColor color) {
+        CFString key = Keys.BackgroundColor();
+        data.put(key, color);
         return this;
     }
     /**
      * @since Available in iOS 8.0 and later.
      */
     public long getMaxPixelSize() {
-        if (has(Keys.ImageMaxPixelSize())) {
-            CFNumber val = get(Keys.ImageMaxPixelSize(), CFNumber.class);
+        CFString key = Keys.ImageMaxPixelSize();
+        if (data.containsKey(key)) {
+            CFNumber val = null;
+            CFString key1 = Keys.ImageMaxPixelSize();
+            if (data.containsKey(key1)) {
+                val = data.get(key1, CFNumber.class);
+            }
             return val.longValue();
         }
         return 0;
@@ -155,16 +152,23 @@ import org.robovm.apple.coregraphics.*;
     /**
      * @since Available in iOS 8.0 and later.
      */
-    public CGImageDestinationProperties setMaxPixelSize(long maxPixelSize) {
-        set(Keys.ImageMaxPixelSize(), CFNumber.valueOf(maxPixelSize));
+    public CGImageDestinationProperties setMaxPixelSize(long size) {
+        CFString key = Keys.ImageMaxPixelSize();
+        NativeObject value = CFNumber.valueOf(size);
+        data.put(key, value);
         return this;
     }
     /**
      * @since Available in iOS 8.0 and later.
      */
-    public boolean embedsThumbnail() {
-        if (has(Keys.EmbedThumbnail())) {
-            CFBoolean val = get(Keys.EmbedThumbnail(), CFBoolean.class);
+    public boolean isEmbeddingThumbnail() {
+        CFString key = Keys.EmbedThumbnail();
+        if (data.containsKey(key)) {
+            CFBoolean val = null;
+            CFString key1 = Keys.EmbedThumbnail();
+            if (data.containsKey(key1)) {
+                val = data.get(key1, CFBoolean.class);
+            }
             return val.booleanValue();
         }
         return false;
@@ -172,8 +176,10 @@ import org.robovm.apple.coregraphics.*;
     /**
      * @since Available in iOS 8.0 and later.
      */
-    public CGImageDestinationProperties setEmbedsThumbnail(boolean embedsThumbnail) {
-        set(Keys.EmbedThumbnail(), CFBoolean.valueOf(embedsThumbnail));
+    public CGImageDestinationProperties setEmbedThumbnail(boolean embed) {
+        CFString key = Keys.EmbedThumbnail();
+        NativeObject value = CFBoolean.valueOf(embed);
+        data.put(key, value);
         return this;
     }
     /*</methods>*/
