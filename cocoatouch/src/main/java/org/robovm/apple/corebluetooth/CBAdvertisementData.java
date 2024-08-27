@@ -16,20 +16,11 @@
 package org.robovm.apple.corebluetooth;
 
 /*<imports>*/
-import java.io.*;
-import java.nio.*;
 import java.util.*;
-import org.robovm.objc.*;
-import org.robovm.objc.annotation.*;
-import org.robovm.objc.block.*;
-import org.robovm.rt.*;
-import org.robovm.rt.annotation.*;
+
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
-import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
-import org.robovm.apple.corefoundation.*;
-import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -39,6 +30,12 @@ import org.robovm.apple.dispatch.*;
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CBAdvertisementData/*</name>*/ 
     extends /*<extends>*/NSDictionaryWrapper/*</extends>*/
     /*<implements>*//*</implements>*/ {
+
+    /**
+     * @since Available in iOS 7.0 and later.
+     */
+    @GlobalValue(symbol="CBAdvertisementDataIsConnectable", optional=true)
+    public static native NSString IsConnectable();
 
     /*<marshalers>*/
     public static class Marshaler {
@@ -92,41 +89,56 @@ import org.robovm.apple.dispatch.*;
     /*</constructors>*/
 
     /*<methods>*/
-    public boolean has(NSString key) {
-        return data.containsKey(key);
-    }
-    public NSObject get(NSString key) {
-        if (has(key)) {
-            return data.get(key);
-        }
-        return null;
-    }
-    
+
 
     public String getLocalName() {
-        if (has(Keys.LocalName())) {
-            NSString val = (NSString) get(Keys.LocalName());
+        NSString key = Keys.LocalName();
+        if (data.containsKey(key)) {
+            NSObject result = null;
+            NSString key1 = Keys.LocalName();
+            if (data.containsKey(key1)) {
+                result = data.get(key1);
+            }
+            NSString val = (NSString) result;
             return val.toString();
         }
         return null;
     }
     public double getTxPowerLevel() {
-        if (has(Keys.TxPowerLevel())) {
-            NSNumber val = (NSNumber) get(Keys.TxPowerLevel());
+        NSString key = Keys.TxPowerLevel();
+        if (data.containsKey(key)) {
+            NSObject result = null;
+            NSString key1 = Keys.TxPowerLevel();
+            if (data.containsKey(key1)) {
+                result = data.get(key1);
+            }
+            NSNumber val = (NSNumber) result;
             return val.doubleValue();
         }
         return 0;
     }
     public NSArray getServiceUUIDs() {
-        if (has(Keys.ServiceUUIDs())) {
-            NSArray val = (NSArray) get(Keys.ServiceUUIDs());
+        NSString key = Keys.ServiceUUIDs();
+        if (data.containsKey(key)) {
+            NSObject result = null;
+            NSString key1 = Keys.ServiceUUIDs();
+            if (data.containsKey(key1)) {
+                result = data.get(key1);
+            }
+            NSArray val = (NSArray) result;
             return val;
         }
         return null;
     }
     public NSData getManufacturerData() {
-        if (has(Keys.ManufacturerData())) {
-            NSData val = (NSData) get(Keys.ManufacturerData());
+        NSString key = Keys.ManufacturerData();
+        if (data.containsKey(key)) {
+            NSObject result = null;
+            NSString key1 = Keys.ManufacturerData();
+            if (data.containsKey(key1)) {
+                result = data.get(key1);
+            }
+            NSData val = (NSData) result;
             return val;
         }
         return null;
@@ -135,8 +147,14 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 6.0 and later.
      */
     public NSArray<CBUUID> getOverflowServiceUUIDs() {
-        if (has(Keys.OverflowServiceUUIDs())) {
-            NSArray<CBUUID> val = (NSArray<CBUUID>) get(Keys.OverflowServiceUUIDs());
+        NSString key = Keys.OverflowServiceUUIDs();
+        if (data.containsKey(key)) {
+            NSObject result = null;
+            NSString key1 = Keys.OverflowServiceUUIDs();
+            if (data.containsKey(key1)) {
+                result = data.get(key1);
+            }
+            NSArray<CBUUID> val = (NSArray<CBUUID>) result;
             return val;
         }
         return null;
@@ -145,8 +163,14 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 7.0 and later.
      */
     public boolean isConnectable() {
-        if (has(Keys.IsConnectable())) {
-            NSNumber val = (NSNumber) get(Keys.IsConnectable());
+        NSString key = IsConnectable();
+        if (data.containsKey(key)) {
+            NSObject result = null;
+            NSString key1 = IsConnectable();
+            if (data.containsKey(key1)) {
+                result = data.get(key1);
+            }
+            NSNumber val = (NSNumber) result;
             return val.booleanValue();
         }
         return false;
@@ -155,8 +179,14 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 7.0 and later.
      */
     public NSArray<CBUUID> getSolicitedServiceUUIDs() {
-        if (has(Keys.SolicitedServiceUUIDs())) {
-            NSArray<CBUUID> val = (NSArray<CBUUID>) get(Keys.SolicitedServiceUUIDs());
+        NSString key = Keys.SolicitedServiceUUIDs();
+        if (data.containsKey(key)) {
+            NSObject result = null;
+            NSString key1 = Keys.SolicitedServiceUUIDs();
+            if (data.containsKey(key1)) {
+                result = data.get(key1);
+            }
+            NSArray<CBUUID> val = (NSArray<CBUUID>) result;
             return val;
         }
         return null;
@@ -182,11 +212,7 @@ import org.robovm.apple.dispatch.*;
          */
         @GlobalValue(symbol="CBAdvertisementDataOverflowServiceUUIDsKey", optional=true)
         public static native NSString OverflowServiceUUIDs();
-        /**
-         * @since Available in iOS 7.0 and later.
-         */
-        @GlobalValue(symbol="CBAdvertisementDataIsConnectable", optional=true)
-        public static native NSString IsConnectable();
+
         /**
          * @since Available in iOS 7.0 and later.
          */
