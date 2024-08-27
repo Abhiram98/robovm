@@ -16,20 +16,11 @@
 package org.robovm.apple.imageio;
 
 /*<imports>*/
-import java.io.*;
-import java.nio.*;
 import java.util.*;
-import org.robovm.objc.*;
-import org.robovm.objc.annotation.*;
-import org.robovm.objc.block.*;
-import org.robovm.rt.*;
-import org.robovm.rt.annotation.*;
+
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
-import org.robovm.rt.bro.ptr.*;
-import org.robovm.apple.foundation.*;
 import org.robovm.apple.corefoundation.*;
-import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -93,27 +84,19 @@ import org.robovm.apple.coregraphics.*;
     /*</constructors>*/
 
     /*<methods>*/
-    public boolean has(CFString key) {
-        return data.containsKey(key);
-    }
-    public <T extends NativeObject> T get(CFString key, Class<T> type) {
-        if (has(key)) {
-            return data.get(key, type);
-        }
-        return null;
-    }
-    public CGImageMetadataEnumerationOptions set(CFString key, NativeObject value) {
-        data.put(key, value);
-        return this;
-    }
-    
+
 
     /**
      * @since Available in iOS 7.0 and later.
      */
-    public boolean enumeratesRecursively() {
-        if (has(Keys.EnumerateRecursively())) {
-            CFBoolean val = get(Keys.EnumerateRecursively(), CFBoolean.class);
+    public boolean isEnumeratingRecursively() {
+        CFString key = Keys.EnumerateRecursively();
+        if (data.containsKey(key)) {
+            CFBoolean val = null;
+            CFString key1 = Keys.EnumerateRecursively();
+            if (data.containsKey(key1)) {
+                val = data.get(key1, CFBoolean.class);
+            }
             return val.booleanValue();
         }
         return false;
@@ -121,8 +104,10 @@ import org.robovm.apple.coregraphics.*;
     /**
      * @since Available in iOS 7.0 and later.
      */
-    public CGImageMetadataEnumerationOptions setEnumeratesRecursively(boolean enumeratesRecursively) {
-        set(Keys.EnumerateRecursively(), CFBoolean.valueOf(enumeratesRecursively));
+    public CGImageMetadataEnumerationOptions setEnumerateRecursively(boolean recursive) {
+        CFString key = Keys.EnumerateRecursively();
+        NativeObject value = CFBoolean.valueOf(recursive);
+        data.put(key, value);
         return this;
     }
     /*</methods>*/
