@@ -16,20 +16,11 @@
 package org.robovm.apple.corebluetooth;
 
 /*<imports>*/
-import java.io.*;
-import java.nio.*;
 import java.util.*;
-import org.robovm.objc.*;
-import org.robovm.objc.annotation.*;
-import org.robovm.objc.block.*;
-import org.robovm.rt.*;
-import org.robovm.rt.annotation.*;
+
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
-import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
-import org.robovm.apple.corefoundation.*;
-import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -93,38 +84,39 @@ import org.robovm.apple.dispatch.*;
     /*</constructors>*/
 
     /*<methods>*/
-    public boolean has(NSString key) {
-        return data.containsKey(key);
-    }
-    public NSObject get(NSString key) {
-        if (has(key)) {
-            return data.get(key);
-        }
-        return null;
-    }
-    public CBCentralManagerScanOptions set(NSString key, NSObject value) {
-        data.put(key, value);
-        return this;
-    }
-    
 
-    public boolean allowsDuplicates() {
-        if (has(Keys.AllowDuplicates())) {
-            NSNumber val = (NSNumber) get(Keys.AllowDuplicates());
+
+    public boolean isAllowingDuplicates() {
+        NSString key = Keys.AllowDuplicates();
+        if (data.containsKey(key)) {
+            NSObject result = null;
+            NSString key1 = Keys.AllowDuplicates();
+            if (data.containsKey(key1)) {
+                result = data.get(key1);
+            }
+            NSNumber val = (NSNumber) result;
             return val.booleanValue();
         }
         return false;
     }
-    public CBCentralManagerScanOptions setAllowsDuplicates(boolean allowsDuplicates) {
-        set(Keys.AllowDuplicates(), NSNumber.valueOf(allowsDuplicates));
+    public CBCentralManagerScanOptions setAllowsDuplicates(boolean allowDuplicates) {
+        NSString key = Keys.AllowDuplicates();
+        NSObject value = NSNumber.valueOf(allowDuplicates);
+        data.put(key, value);
         return this;
     }
     /**
      * @since Available in iOS 7.0 and later.
      */
     public NSArray<CBUUID> getSolicitedServiceUUIDs() {
-        if (has(Keys.SolicitedServiceUUIDs())) {
-            NSArray<CBUUID> val = (NSArray<CBUUID>) get(Keys.SolicitedServiceUUIDs());
+        NSString key = Keys.SolicitedServiceUUIDs();
+        if (data.containsKey(key)) {
+            NSObject result = null;
+            NSString key1 = Keys.SolicitedServiceUUIDs();
+            if (data.containsKey(key1)) {
+                result = data.get(key1);
+            }
+            NSArray<CBUUID> val = (NSArray<CBUUID>) result;
             return val;
         }
         return null;
@@ -132,8 +124,9 @@ import org.robovm.apple.dispatch.*;
     /**
      * @since Available in iOS 7.0 and later.
      */
-    public CBCentralManagerScanOptions setSolicitedServiceUUIDs(NSArray<CBUUID> solicitedServiceUUIDs) {
-        set(Keys.SolicitedServiceUUIDs(), solicitedServiceUUIDs);
+    public CBCentralManagerScanOptions setSolicitedServiceUUIDs(NSArray<CBUUID> uuids) {
+        NSString key = Keys.SolicitedServiceUUIDs();
+        data.put(key, uuids);
         return this;
     }
     /*</methods>*/
