@@ -16,20 +16,11 @@
 package org.robovm.apple.imageio;
 
 /*<imports>*/
-import java.io.*;
-import java.nio.*;
 import java.util.*;
-import org.robovm.objc.*;
-import org.robovm.objc.annotation.*;
-import org.robovm.objc.block.*;
-import org.robovm.rt.*;
-import org.robovm.rt.annotation.*;
+
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
-import org.robovm.rt.bro.ptr.*;
-import org.robovm.apple.foundation.*;
 import org.robovm.apple.corefoundation.*;
-import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -93,27 +84,20 @@ import org.robovm.apple.coregraphics.*;
     /*</constructors>*/
 
     /*<methods>*/
-    public boolean has(CGImagePropertyIPTC key) {
-        return data.containsKey(key.value());
+    public boolean has(CGImagePropertyIPTC property) {
+        return data.containsKey(property.value());
     }
-    public <T extends NativeObject> T get(CGImagePropertyIPTC key, Class<T> type) {
-        if (has(key)) {
-            return data.get(key.value(), type);
-        }
-        return null;
-    }
-    public CGImagePropertyIPTCData set(CGImagePropertyIPTC key, NativeObject value) {
-        data.put(key.value(), value);
-        return this;
-    }
-    
+
 
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public CGImagePropertyIPTCContactInfoData getCreatorContactInfo() {
+    public CGImagePropertyIPTCContactInfoData getContactInfo() {
         if (has(CGImagePropertyIPTC.CreatorContactInfo)) {
-            CFDictionary val = get(CGImagePropertyIPTC.CreatorContactInfo, CFDictionary.class);
+            CFDictionary val = null;
+            if (has(CGImagePropertyIPTC.CreatorContactInfo)) {
+                val = data.get(CGImagePropertyIPTC.CreatorContactInfo.value(), CFDictionary.class);
+            }
             return new CGImagePropertyIPTCContactInfoData(val);
         }
         return null;
@@ -121,31 +105,40 @@ import org.robovm.apple.coregraphics.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public CGImagePropertyIPTCData setCreatorContactInfo(CGImagePropertyIPTCContactInfoData creatorContactInfo) {
-        set(CGImagePropertyIPTC.CreatorContactInfo, creatorContactInfo.getDictionary());
+    public CGImagePropertyIPTCData setContactInfo(CGImagePropertyIPTCContactInfoData contactInfo) {
+        NativeObject value = contactInfo.getDictionary();
+        data.put(CGImagePropertyIPTC.CreatorContactInfo.value(), value);
         return this;
     }
     /*</methods>*/
     public String getString(CGImagePropertyIPTC property) {
         if (has(property)) {
-            CFString val = get(property, CFString.class);
+            CFString val = null;
+            if (has(property)) {
+                val = data.get(property.value(), CFString.class);
+            }
             return val.toString();
         }
         return null;
     }
     public double getNumber(CGImagePropertyIPTC property) {
         if (has(property)) {
-            CFNumber val = get(property, CFNumber.class);
+            CFNumber val = null;
+            if (has(property)) {
+                val = data.get(property.value(), CFNumber.class);
+            }
             return val.doubleValue();
         }
         return 0;
     }
     public CGImagePropertyIPTCData set(CGImagePropertyIPTC property, String value) {
-        set(property, new CFString(value));
+        NativeObject value1 = new CFString(value);
+        data.put(property.value(), value1);
         return this;
     }
     public CGImagePropertyIPTCData set(CGImagePropertyIPTC property, double value) {
-        set(property, CFNumber.valueOf(value));
+        NativeObject value1 = CFNumber.valueOf(value);
+        data.put(property.value(), value1);
         return this;
     }
     
