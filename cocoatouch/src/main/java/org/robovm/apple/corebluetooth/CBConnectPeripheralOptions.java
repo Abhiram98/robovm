@@ -16,20 +16,11 @@
 package org.robovm.apple.corebluetooth;
 
 /*<imports>*/
-import java.io.*;
-import java.nio.*;
 import java.util.*;
-import org.robovm.objc.*;
-import org.robovm.objc.annotation.*;
-import org.robovm.objc.block.*;
-import org.robovm.rt.*;
-import org.robovm.rt.annotation.*;
+
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
-import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
-import org.robovm.apple.corefoundation.*;
-import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -93,27 +84,20 @@ import org.robovm.apple.dispatch.*;
     /*</constructors>*/
 
     /*<methods>*/
-    public boolean has(NSString key) {
-        return data.containsKey(key);
-    }
-    public NSObject get(NSString key) {
-        if (has(key)) {
-            return data.get(key);
-        }
-        return null;
-    }
-    public CBConnectPeripheralOptions set(NSString key, NSObject value) {
-        data.put(key, value);
-        return this;
-    }
-    
+
 
     /**
      * @since Available in iOS 6.0 and later.
      */
-    public boolean notifiesOnConnection() {
-        if (has(Keys.NotifyOnConnection())) {
-            NSNumber val = (NSNumber) get(Keys.NotifyOnConnection());
+    public boolean isNotifyingOnConnection() {
+        NSString key = Keys.NotifyOnConnection();
+        if (data.containsKey(key)) {
+            NSObject result = null;
+            NSString key1 = Keys.NotifyOnConnection();
+            if (data.containsKey(key1)) {
+                result = data.get(key1);
+            }
+            NSNumber val = (NSNumber) result;
             return val.booleanValue();
         }
         return false;
@@ -121,27 +105,43 @@ import org.robovm.apple.dispatch.*;
     /**
      * @since Available in iOS 6.0 and later.
      */
-    public CBConnectPeripheralOptions setNotifiesOnConnection(boolean notifiesOnConnection) {
-        set(Keys.NotifyOnConnection(), NSNumber.valueOf(notifiesOnConnection));
+    public CBConnectPeripheralOptions setNotifyOnConnection(boolean notify) {
+        NSString key = Keys.NotifyOnConnection();
+        NSObject value = NSNumber.valueOf(notify);
+        data.put(key, value);
         return this;
     }
-    public boolean notifiesOnDisconnection() {
-        if (has(Keys.NotifyOnDisconnection())) {
-            NSNumber val = (NSNumber) get(Keys.NotifyOnDisconnection());
+    public boolean isNotifyingOnDisconnection() {
+        NSString key = Keys.NotifyOnDisconnection();
+        if (data.containsKey(key)) {
+            NSObject result = null;
+            NSString key1 = Keys.NotifyOnDisconnection();
+            if (data.containsKey(key1)) {
+                result = data.get(key1);
+            }
+            NSNumber val = (NSNumber) result;
             return val.booleanValue();
         }
         return false;
     }
-    public CBConnectPeripheralOptions setNotifiesOnDisconnection(boolean notifiesOnDisconnection) {
-        set(Keys.NotifyOnDisconnection(), NSNumber.valueOf(notifiesOnDisconnection));
+    public CBConnectPeripheralOptions setNotifyOnDisconnection(boolean notify) {
+        NSString key = Keys.NotifyOnDisconnection();
+        NSObject value = NSNumber.valueOf(notify);
+        data.put(key, value);
         return this;
     }
     /**
      * @since Available in iOS 6.0 and later.
      */
-    public boolean notifiesOnNotification() {
-        if (has(Keys.NotifyOnNotification())) {
-            NSNumber val = (NSNumber) get(Keys.NotifyOnNotification());
+    public boolean isNotifyingOnNotification() {
+        NSString key = Keys.NotifyOnNotification();
+        if (data.containsKey(key)) {
+            NSObject result = null;
+            NSString key1 = Keys.NotifyOnNotification();
+            if (data.containsKey(key1)) {
+                result = data.get(key1);
+            }
+            NSNumber val = (NSNumber) result;
             return val.booleanValue();
         }
         return false;
@@ -149,8 +149,10 @@ import org.robovm.apple.dispatch.*;
     /**
      * @since Available in iOS 6.0 and later.
      */
-    public CBConnectPeripheralOptions setNotifiesOnNotification(boolean notifiesOnNotification) {
-        set(Keys.NotifyOnNotification(), NSNumber.valueOf(notifiesOnNotification));
+    public CBConnectPeripheralOptions setNotifyOnNotification(boolean notify) {
+        NSString key = Keys.NotifyOnNotification();
+        NSObject value = NSNumber.valueOf(notify);
+        data.put(key, value);
         return this;
     }
     /*</methods>*/
