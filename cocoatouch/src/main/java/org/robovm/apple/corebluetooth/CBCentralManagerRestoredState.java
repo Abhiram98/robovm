@@ -16,20 +16,11 @@
 package org.robovm.apple.corebluetooth;
 
 /*<imports>*/
-import java.io.*;
-import java.nio.*;
 import java.util.*;
-import org.robovm.objc.*;
-import org.robovm.objc.annotation.*;
-import org.robovm.objc.block.*;
-import org.robovm.rt.*;
-import org.robovm.rt.annotation.*;
+
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
-import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
-import org.robovm.apple.corefoundation.*;
-import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -92,23 +83,20 @@ import org.robovm.apple.dispatch.*;
     /*</constructors>*/
 
     /*<methods>*/
-    public boolean has(NSString key) {
-        return data.containsKey(key);
-    }
-    public NSObject get(NSString key) {
-        if (has(key)) {
-            return data.get(key);
-        }
-        return null;
-    }
-    
+
 
     /**
      * @since Available in iOS 7.0 and later.
      */
     public NSArray<CBPeripheral> getPeripherals() {
-        if (has(Keys.Peripherals())) {
-            NSArray<CBPeripheral> val = (NSArray<CBPeripheral>) get(Keys.Peripherals());
+        NSString key = Keys.Peripherals();
+        if (data.containsKey(key)) {
+            NSObject result = null;
+            NSString key1 = Keys.Peripherals();
+            if (data.containsKey(key1)) {
+                result = data.get(key1);
+            }
+            NSArray<CBPeripheral> val = (NSArray<CBPeripheral>) result;
             return val;
         }
         return null;
@@ -117,8 +105,14 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 7.0 and later.
      */
     public NSArray<CBUUID> getScanServices() {
-        if (has(Keys.ScanServices())) {
-            NSArray<CBUUID> val = (NSArray<CBUUID>) get(Keys.ScanServices());
+        NSString key = Keys.ScanServices();
+        if (data.containsKey(key)) {
+            NSObject result = null;
+            NSString key1 = Keys.ScanServices();
+            if (data.containsKey(key1)) {
+                result = data.get(key1);
+            }
+            NSArray<CBUUID> val = (NSArray<CBUUID>) result;
             return val;
         }
         return null;
@@ -127,8 +121,14 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 7.0 and later.
      */
     public CBCentralManagerScanOptions getScanOptions() {
-        if (has(Keys.ScanOptions())) {
-            NSDictionary<NSString, NSObject> val = (NSDictionary<NSString, NSObject>) get(Keys.ScanOptions());
+        NSString key = Keys.ScanOptions();
+        if (data.containsKey(key)) {
+            NSObject result = null;
+            NSString key1 = Keys.ScanOptions();
+            if (data.containsKey(key1)) {
+                result = data.get(key1);
+            }
+            NSDictionary<NSString, NSObject> val = (NSDictionary<NSString, NSObject>) result;
             return new CBCentralManagerScanOptions(val);
         }
         return null;
