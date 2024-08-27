@@ -16,20 +16,11 @@
 package org.robovm.apple.imageio;
 
 /*<imports>*/
-import java.io.*;
-import java.nio.*;
 import java.util.*;
-import org.robovm.objc.*;
-import org.robovm.objc.annotation.*;
-import org.robovm.objc.block.*;
-import org.robovm.rt.*;
-import org.robovm.rt.annotation.*;
+
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
-import org.robovm.rt.bro.ptr.*;
-import org.robovm.apple.foundation.*;
 import org.robovm.apple.corefoundation.*;
-import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -93,27 +84,19 @@ import org.robovm.apple.coregraphics.*;
     /*</constructors>*/
 
     /*<methods>*/
-    public boolean has(CFString key) {
-        return data.containsKey(key);
-    }
-    public <T extends NativeObject> T get(CFString key, Class<T> type) {
-        if (has(key)) {
-            return data.get(key, type);
-        }
-        return null;
-    }
-    public CGImageProperties set(CFString key, NativeObject value) {
-        data.put(key, value);
-        return this;
-    }
-    
+
 
     /**
      * @since Available in iOS 4.0 and later.
      */
     public CGImagePropertyTIFFData getTIFFData() {
-        if (has(Keys.TIFFDictionary())) {
-            CFDictionary val = get(Keys.TIFFDictionary(), CFDictionary.class);
+        CFString key = Keys.TIFFDictionary();
+        if (data.containsKey(key)) {
+            CFDictionary val = null;
+            CFString key1 = Keys.TIFFDictionary();
+            if (data.containsKey(key1)) {
+                val = data.get(key1, CFDictionary.class);
+            }
             return new CGImagePropertyTIFFData(val);
         }
         return null;
@@ -121,16 +104,23 @@ import org.robovm.apple.coregraphics.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public CGImageProperties setTIFFData(CGImagePropertyTIFFData tIFFData) {
-        set(Keys.TIFFDictionary(), tIFFData.getDictionary());
+    public CGImageProperties setTIFFData(CGImagePropertyTIFFData metadata) {
+        CFString key = Keys.TIFFDictionary();
+        NativeObject value = metadata.getDictionary();
+        data.put(key, value);
         return this;
     }
     /**
      * @since Available in iOS 4.0 and later.
      */
     public CGImagePropertyGIFData getGIFData() {
-        if (has(Keys.GIFDictionary())) {
-            CFDictionary val = get(Keys.GIFDictionary(), CFDictionary.class);
+        CFString key = Keys.GIFDictionary();
+        if (data.containsKey(key)) {
+            CFDictionary val = null;
+            CFString key1 = Keys.GIFDictionary();
+            if (data.containsKey(key1)) {
+                val = data.get(key1, CFDictionary.class);
+            }
             return new CGImagePropertyGIFData(val);
         }
         return null;
@@ -138,16 +128,23 @@ import org.robovm.apple.coregraphics.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public CGImageProperties setGIFData(CGImagePropertyGIFData gIFData) {
-        set(Keys.GIFDictionary(), gIFData.getDictionary());
+    public CGImageProperties setGIFData(CGImagePropertyGIFData metadata) {
+        CFString key = Keys.GIFDictionary();
+        NativeObject value = metadata.getDictionary();
+        data.put(key, value);
         return this;
     }
     /**
      * @since Available in iOS 4.0 and later.
      */
     public CGImagePropertyJFIFData getJFIFData() {
-        if (has(Keys.JFIFDictionary())) {
-            CFDictionary val = get(Keys.JFIFDictionary(), CFDictionary.class);
+        CFString key = Keys.JFIFDictionary();
+        if (data.containsKey(key)) {
+            CFDictionary val = null;
+            CFString key1 = Keys.JFIFDictionary();
+            if (data.containsKey(key1)) {
+                val = data.get(key1, CFDictionary.class);
+            }
             return new CGImagePropertyJFIFData(val);
         }
         return null;
@@ -155,16 +152,23 @@ import org.robovm.apple.coregraphics.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public CGImageProperties setJFIFData(CGImagePropertyJFIFData jFIFData) {
-        set(Keys.JFIFDictionary(), jFIFData.getDictionary());
+    public CGImageProperties setJFIFData(CGImagePropertyJFIFData metadata) {
+        CFString key = Keys.JFIFDictionary();
+        NativeObject value = metadata.getDictionary();
+        data.put(key, value);
         return this;
     }
     /**
      * @since Available in iOS 4.0 and later.
      */
     public CGImagePropertyExifData getExifData() {
-        if (has(Keys.ExifDictionary())) {
-            CFDictionary val = get(Keys.ExifDictionary(), CFDictionary.class);
+        CFString key = Keys.ExifDictionary();
+        if (data.containsKey(key)) {
+            CFDictionary val = null;
+            CFString key1 = Keys.ExifDictionary();
+            if (data.containsKey(key1)) {
+                val = data.get(key1, CFDictionary.class);
+            }
             return new CGImagePropertyExifData(val);
         }
         return null;
@@ -172,16 +176,23 @@ import org.robovm.apple.coregraphics.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public CGImageProperties setExifData(CGImagePropertyExifData exifData) {
-        set(Keys.ExifDictionary(), exifData.getDictionary());
+    public CGImageProperties setExifData(CGImagePropertyExifData metadata) {
+        CFString key = Keys.ExifDictionary();
+        NativeObject value = metadata.getDictionary();
+        data.put(key, value);
         return this;
     }
     /**
      * @since Available in iOS 4.0 and later.
      */
     public CGImagePropertyPNGData getPNGData() {
-        if (has(Keys.PNGDictionary())) {
-            CFDictionary val = get(Keys.PNGDictionary(), CFDictionary.class);
+        CFString key = Keys.PNGDictionary();
+        if (data.containsKey(key)) {
+            CFDictionary val = null;
+            CFString key1 = Keys.PNGDictionary();
+            if (data.containsKey(key1)) {
+                val = data.get(key1, CFDictionary.class);
+            }
             return new CGImagePropertyPNGData(val);
         }
         return null;
@@ -189,16 +200,23 @@ import org.robovm.apple.coregraphics.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public CGImageProperties setPNGData(CGImagePropertyPNGData pNGData) {
-        set(Keys.PNGDictionary(), pNGData.getDictionary());
+    public CGImageProperties setPNGData(CGImagePropertyPNGData metadata) {
+        CFString key = Keys.PNGDictionary();
+        NativeObject value = metadata.getDictionary();
+        data.put(key, value);
         return this;
     }
     /**
      * @since Available in iOS 4.0 and later.
      */
     public CGImagePropertyIPTCData getIPTCData() {
-        if (has(Keys.IPTCDictionary())) {
-            CFDictionary val = get(Keys.IPTCDictionary(), CFDictionary.class);
+        CFString key = Keys.IPTCDictionary();
+        if (data.containsKey(key)) {
+            CFDictionary val = null;
+            CFString key1 = Keys.IPTCDictionary();
+            if (data.containsKey(key1)) {
+                val = data.get(key1, CFDictionary.class);
+            }
             return new CGImagePropertyIPTCData(val);
         }
         return null;
@@ -206,16 +224,23 @@ import org.robovm.apple.coregraphics.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public CGImageProperties setIPTCData(CGImagePropertyIPTCData iPTCData) {
-        set(Keys.IPTCDictionary(), iPTCData.getDictionary());
+    public CGImageProperties setIPTCData(CGImagePropertyIPTCData metadata) {
+        CFString key = Keys.IPTCDictionary();
+        NativeObject value = metadata.getDictionary();
+        data.put(key, value);
         return this;
     }
     /**
      * @since Available in iOS 4.0 and later.
      */
     public CGImagePropertyGPSData getGPSData() {
-        if (has(Keys.GPSDictionary())) {
-            CFDictionary val = get(Keys.GPSDictionary(), CFDictionary.class);
+        CFString key = Keys.GPSDictionary();
+        if (data.containsKey(key)) {
+            CFDictionary val = null;
+            CFString key1 = Keys.GPSDictionary();
+            if (data.containsKey(key1)) {
+                val = data.get(key1, CFDictionary.class);
+            }
             return new CGImagePropertyGPSData(val);
         }
         return null;
@@ -223,16 +248,23 @@ import org.robovm.apple.coregraphics.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public CGImageProperties setGPSData(CGImagePropertyGPSData gPSData) {
-        set(Keys.GPSDictionary(), gPSData.getDictionary());
+    public CGImageProperties setGPSData(CGImagePropertyGPSData metadata) {
+        CFString key = Keys.GPSDictionary();
+        NativeObject value = metadata.getDictionary();
+        data.put(key, value);
         return this;
     }
     /**
      * @since Available in iOS 4.0 and later.
      */
     public CFDictionary getRawData() {
-        if (has(Keys.RawDictionary())) {
-            CFDictionary val = get(Keys.RawDictionary(), CFDictionary.class);
+        CFString key = Keys.RawDictionary();
+        if (data.containsKey(key)) {
+            CFDictionary val = null;
+            CFString key1 = Keys.RawDictionary();
+            if (data.containsKey(key1)) {
+                val = data.get(key1, CFDictionary.class);
+            }
             return val;
         }
         return null;
@@ -240,16 +272,22 @@ import org.robovm.apple.coregraphics.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public CGImageProperties setRawData(CFDictionary rawData) {
-        set(Keys.RawDictionary(), rawData);
+    public CGImageProperties setRawData(CFDictionary metadata) {
+        CFString key = Keys.RawDictionary();
+        data.put(key, metadata);
         return this;
     }
     /**
      * @since Available in iOS 4.0 and later.
      */
     public CGImagePropertyCIFFData getCIFFData() {
-        if (has(Keys.CIFFDictionary())) {
-            CFDictionary val = get(Keys.CIFFDictionary(), CFDictionary.class);
+        CFString key = Keys.CIFFDictionary();
+        if (data.containsKey(key)) {
+            CFDictionary val = null;
+            CFString key1 = Keys.CIFFDictionary();
+            if (data.containsKey(key1)) {
+                val = data.get(key1, CFDictionary.class);
+            }
             return new CGImagePropertyCIFFData(val);
         }
         return null;
@@ -257,16 +295,23 @@ import org.robovm.apple.coregraphics.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public CGImageProperties setCIFFData(CGImagePropertyCIFFData cIFFData) {
-        set(Keys.CIFFDictionary(), cIFFData.getDictionary());
+    public CGImageProperties setCIFFData(CGImagePropertyCIFFData metadata) {
+        CFString key = Keys.CIFFDictionary();
+        NativeObject value = metadata.getDictionary();
+        data.put(key, value);
         return this;
     }
     /**
      * @since Available in iOS 4.0 and later.
      */
     public CGImagePropertyCanonData getMakerCanonData() {
-        if (has(Keys.MakerCanonDictionary())) {
-            CFDictionary val = get(Keys.MakerCanonDictionary(), CFDictionary.class);
+        CFString key = Keys.MakerCanonDictionary();
+        if (data.containsKey(key)) {
+            CFDictionary val = null;
+            CFString key1 = Keys.MakerCanonDictionary();
+            if (data.containsKey(key1)) {
+                val = data.get(key1, CFDictionary.class);
+            }
             return new CGImagePropertyCanonData(val);
         }
         return null;
@@ -274,16 +319,23 @@ import org.robovm.apple.coregraphics.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public CGImageProperties setMakerCanonData(CGImagePropertyCanonData makerCanonData) {
-        set(Keys.MakerCanonDictionary(), makerCanonData.getDictionary());
+    public CGImageProperties setMakerCanonData(CGImagePropertyCanonData metadata) {
+        CFString key = Keys.MakerCanonDictionary();
+        NativeObject value = metadata.getDictionary();
+        data.put(key, value);
         return this;
     }
     /**
      * @since Available in iOS 4.0 and later.
      */
     public CGImagePropertyNikonData getMakerNikonData() {
-        if (has(Keys.MakerNikonDictionary())) {
-            CFDictionary val = get(Keys.MakerNikonDictionary(), CFDictionary.class);
+        CFString key = Keys.MakerNikonDictionary();
+        if (data.containsKey(key)) {
+            CFDictionary val = null;
+            CFString key1 = Keys.MakerNikonDictionary();
+            if (data.containsKey(key1)) {
+                val = data.get(key1, CFDictionary.class);
+            }
             return new CGImagePropertyNikonData(val);
         }
         return null;
@@ -291,16 +343,23 @@ import org.robovm.apple.coregraphics.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public CGImageProperties setMakerNikonData(CGImagePropertyNikonData makerNikonData) {
-        set(Keys.MakerNikonDictionary(), makerNikonData.getDictionary());
+    public CGImageProperties setMakerNikonData(CGImagePropertyNikonData metadata) {
+        CFString key = Keys.MakerNikonDictionary();
+        NativeObject value = metadata.getDictionary();
+        data.put(key, value);
         return this;
     }
     /**
      * @since Available in iOS 4.0 and later.
      */
     public CFDictionary getMakerMinoltaData() {
-        if (has(Keys.MakerMinoltaDictionary())) {
-            CFDictionary val = get(Keys.MakerMinoltaDictionary(), CFDictionary.class);
+        CFString key = Keys.MakerMinoltaDictionary();
+        if (data.containsKey(key)) {
+            CFDictionary val = null;
+            CFString key1 = Keys.MakerMinoltaDictionary();
+            if (data.containsKey(key1)) {
+                val = data.get(key1, CFDictionary.class);
+            }
             return val;
         }
         return null;
@@ -308,16 +367,22 @@ import org.robovm.apple.coregraphics.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public CGImageProperties setMakerMinoltaData(CFDictionary makerMinoltaData) {
-        set(Keys.MakerMinoltaDictionary(), makerMinoltaData);
+    public CGImageProperties setMakerMinoltaData(CFDictionary metadata) {
+        CFString key = Keys.MakerMinoltaDictionary();
+        data.put(key, metadata);
         return this;
     }
     /**
      * @since Available in iOS 4.0 and later.
      */
     public CFDictionary getMakerFujiData() {
-        if (has(Keys.MakerFujiDictionary())) {
-            CFDictionary val = get(Keys.MakerFujiDictionary(), CFDictionary.class);
+        CFString key = Keys.MakerFujiDictionary();
+        if (data.containsKey(key)) {
+            CFDictionary val = null;
+            CFString key1 = Keys.MakerFujiDictionary();
+            if (data.containsKey(key1)) {
+                val = data.get(key1, CFDictionary.class);
+            }
             return val;
         }
         return null;
@@ -325,16 +390,22 @@ import org.robovm.apple.coregraphics.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public CGImageProperties setMakerFujiData(CFDictionary makerFujiData) {
-        set(Keys.MakerFujiDictionary(), makerFujiData);
+    public CGImageProperties setMakerFujiData(CFDictionary metadata) {
+        CFString key = Keys.MakerFujiDictionary();
+        data.put(key, metadata);
         return this;
     }
     /**
      * @since Available in iOS 4.0 and later.
      */
     public CFDictionary getMakerOlympusData() {
-        if (has(Keys.MakerOlympusDictionary())) {
-            CFDictionary val = get(Keys.MakerOlympusDictionary(), CFDictionary.class);
+        CFString key = Keys.MakerOlympusDictionary();
+        if (data.containsKey(key)) {
+            CFDictionary val = null;
+            CFString key1 = Keys.MakerOlympusDictionary();
+            if (data.containsKey(key1)) {
+                val = data.get(key1, CFDictionary.class);
+            }
             return val;
         }
         return null;
@@ -342,16 +413,22 @@ import org.robovm.apple.coregraphics.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public CGImageProperties setMakerOlympusData(CFDictionary makerOlympusData) {
-        set(Keys.MakerOlympusDictionary(), makerOlympusData);
+    public CGImageProperties setMakerOlympusData(CFDictionary metadata) {
+        CFString key = Keys.MakerOlympusDictionary();
+        data.put(key, metadata);
         return this;
     }
     /**
      * @since Available in iOS 4.0 and later.
      */
     public CFDictionary getMakerPentaxData() {
-        if (has(Keys.MakerPentaxDictionary())) {
-            CFDictionary val = get(Keys.MakerPentaxDictionary(), CFDictionary.class);
+        CFString key = Keys.MakerPentaxDictionary();
+        if (data.containsKey(key)) {
+            CFDictionary val = null;
+            CFString key1 = Keys.MakerPentaxDictionary();
+            if (data.containsKey(key1)) {
+                val = data.get(key1, CFDictionary.class);
+            }
             return val;
         }
         return null;
@@ -359,16 +436,22 @@ import org.robovm.apple.coregraphics.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public CGImageProperties setMakerPentaxData(CFDictionary makerPentaxData) {
-        set(Keys.MakerPentaxDictionary(), makerPentaxData);
+    public CGImageProperties setMakerPentaxData(CFDictionary metadata) {
+        CFString key = Keys.MakerPentaxDictionary();
+        data.put(key, metadata);
         return this;
     }
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public CGImageProperty8BIMData getData() {
-        if (has(Keys._8BIMDictionary())) {
-            CFDictionary val = get(Keys._8BIMDictionary(), CFDictionary.class);
+    public CGImageProperty8BIMData get8BIMData() {
+        CFString key = Keys._8BIMDictionary();
+        if (data.containsKey(key)) {
+            CFDictionary val = null;
+            CFString key1 = Keys._8BIMDictionary();
+            if (data.containsKey(key1)) {
+                val = data.get(key1, CFDictionary.class);
+            }
             return new CGImageProperty8BIMData(val);
         }
         return null;
@@ -376,16 +459,23 @@ import org.robovm.apple.coregraphics.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public CGImageProperties set8BIMData(CGImageProperty8BIMData data) {
-        set(Keys._8BIMDictionary(), data.getDictionary());
+    public CGImageProperties set8BIMData(CGImageProperty8BIMData metadata) {
+        CFString key = Keys._8BIMDictionary();
+        NativeObject value = metadata.getDictionary();
+        this.data.put(key, value);
         return this;
     }
     /**
      * @since Available in iOS 4.0 and later.
      */
     public CGImagePropertyDNGData getDNGData() {
-        if (has(Keys.DNGDictionary())) {
-            CFDictionary val = get(Keys.DNGDictionary(), CFDictionary.class);
+        CFString key = Keys.DNGDictionary();
+        if (data.containsKey(key)) {
+            CFDictionary val = null;
+            CFString key1 = Keys.DNGDictionary();
+            if (data.containsKey(key1)) {
+                val = data.get(key1, CFDictionary.class);
+            }
             return new CGImagePropertyDNGData(val);
         }
         return null;
@@ -393,16 +483,23 @@ import org.robovm.apple.coregraphics.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public CGImageProperties setDNGData(CGImagePropertyDNGData dNGData) {
-        set(Keys.DNGDictionary(), dNGData.getDictionary());
+    public CGImageProperties setDNGData(CGImagePropertyDNGData metadata) {
+        CFString key = Keys.DNGDictionary();
+        NativeObject value = metadata.getDictionary();
+        data.put(key, value);
         return this;
     }
     /**
      * @since Available in iOS 4.0 and later.
      */
     public CGImagePropertyExifAuxData getExifAuxData() {
-        if (has(Keys.ExifAuxDictionary())) {
-            CFDictionary val = get(Keys.ExifAuxDictionary(), CFDictionary.class);
+        CFString key = Keys.ExifAuxDictionary();
+        if (data.containsKey(key)) {
+            CFDictionary val = null;
+            CFString key1 = Keys.ExifAuxDictionary();
+            if (data.containsKey(key1)) {
+                val = data.get(key1, CFDictionary.class);
+            }
             return new CGImagePropertyExifAuxData(val);
         }
         return null;
@@ -410,16 +507,23 @@ import org.robovm.apple.coregraphics.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public CGImageProperties setExifAuxData(CGImagePropertyExifAuxData exifAuxData) {
-        set(Keys.ExifAuxDictionary(), exifAuxData.getDictionary());
+    public CGImageProperties setExifAuxData(CGImagePropertyExifAuxData metadata) {
+        CFString key = Keys.ExifAuxDictionary();
+        NativeObject value = metadata.getDictionary();
+        data.put(key, value);
         return this;
     }
     /**
      * @since Available in iOS 4.0 and later.
      */
     public long getFileSize() {
-        if (has(Keys.FileSize())) {
-            CFNumber val = get(Keys.FileSize(), CFNumber.class);
+        CFString key = Keys.FileSize();
+        if (data.containsKey(key)) {
+            CFNumber val = null;
+            CFString key1 = Keys.FileSize();
+            if (data.containsKey(key1)) {
+                val = data.get(key1, CFNumber.class);
+            }
             return val.longValue();
         }
         return 0;
@@ -428,15 +532,22 @@ import org.robovm.apple.coregraphics.*;
      * @since Available in iOS 4.0 and later.
      */
     public CGImageProperties setFileSize(long fileSize) {
-        set(Keys.FileSize(), CFNumber.valueOf(fileSize));
+        CFString key = Keys.FileSize();
+        NativeObject value = CFNumber.valueOf(fileSize);
+        data.put(key, value);
         return this;
     }
     /**
      * @since Available in iOS 4.0 and later.
      */
     public long getPixelHeight() {
-        if (has(Keys.PixelHeight())) {
-            CFNumber val = get(Keys.PixelHeight(), CFNumber.class);
+        CFString key = Keys.PixelHeight();
+        if (data.containsKey(key)) {
+            CFNumber val = null;
+            CFString key1 = Keys.PixelHeight();
+            if (data.containsKey(key1)) {
+                val = data.get(key1, CFNumber.class);
+            }
             return val.longValue();
         }
         return 0;
@@ -444,16 +555,23 @@ import org.robovm.apple.coregraphics.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public CGImageProperties setPixelHeight(long pixelHeight) {
-        set(Keys.PixelHeight(), CFNumber.valueOf(pixelHeight));
+    public CGImageProperties setPixelHeight(long height) {
+        CFString key = Keys.PixelHeight();
+        NativeObject value = CFNumber.valueOf(height);
+        data.put(key, value);
         return this;
     }
     /**
      * @since Available in iOS 4.0 and later.
      */
     public long getPixelWidth() {
-        if (has(Keys.PixelWidth())) {
-            CFNumber val = get(Keys.PixelWidth(), CFNumber.class);
+        CFString key = Keys.PixelWidth();
+        if (data.containsKey(key)) {
+            CFNumber val = null;
+            CFString key1 = Keys.PixelWidth();
+            if (data.containsKey(key1)) {
+                val = data.get(key1, CFNumber.class);
+            }
             return val.longValue();
         }
         return 0;
@@ -461,16 +579,23 @@ import org.robovm.apple.coregraphics.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public CGImageProperties setPixelWidth(long pixelWidth) {
-        set(Keys.PixelWidth(), CFNumber.valueOf(pixelWidth));
+    public CGImageProperties setPixelWidth(long width) {
+        CFString key = Keys.PixelWidth();
+        NativeObject value = CFNumber.valueOf(width);
+        data.put(key, value);
         return this;
     }
     /**
      * @since Available in iOS 4.0 and later.
      */
     public long getDPIHeight() {
-        if (has(Keys.DPIHeight())) {
-            CFNumber val = get(Keys.DPIHeight(), CFNumber.class);
+        CFString key = Keys.DPIHeight();
+        if (data.containsKey(key)) {
+            CFNumber val = null;
+            CFString key1 = Keys.DPIHeight();
+            if (data.containsKey(key1)) {
+                val = data.get(key1, CFNumber.class);
+            }
             return val.longValue();
         }
         return 0;
@@ -478,16 +603,23 @@ import org.robovm.apple.coregraphics.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public CGImageProperties setDPIHeight(long dPIHeight) {
-        set(Keys.DPIHeight(), CFNumber.valueOf(dPIHeight));
+    public CGImageProperties setDPIHeight(long dpi) {
+        CFString key = Keys.DPIHeight();
+        NativeObject value = CFNumber.valueOf(dpi);
+        data.put(key, value);
         return this;
     }
     /**
      * @since Available in iOS 4.0 and later.
      */
     public long getDPIWidth() {
-        if (has(Keys.DPIWidth())) {
-            CFNumber val = get(Keys.DPIWidth(), CFNumber.class);
+        CFString key = Keys.DPIWidth();
+        if (data.containsKey(key)) {
+            CFNumber val = null;
+            CFString key1 = Keys.DPIWidth();
+            if (data.containsKey(key1)) {
+                val = data.get(key1, CFNumber.class);
+            }
             return val.longValue();
         }
         return 0;
@@ -495,16 +627,23 @@ import org.robovm.apple.coregraphics.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public CGImageProperties setDPIWidth(long dPIWidth) {
-        set(Keys.DPIWidth(), CFNumber.valueOf(dPIWidth));
+    public CGImageProperties setDPIWidth(long dpi) {
+        CFString key = Keys.DPIWidth();
+        NativeObject value = CFNumber.valueOf(dpi);
+        data.put(key, value);
         return this;
     }
     /**
      * @since Available in iOS 4.0 and later.
      */
     public int getDepth() {
-        if (has(Keys.Depth())) {
-            CFNumber val = get(Keys.Depth(), CFNumber.class);
+        CFString key = Keys.Depth();
+        if (data.containsKey(key)) {
+            CFNumber val = null;
+            CFString key1 = Keys.Depth();
+            if (data.containsKey(key1)) {
+                val = data.get(key1, CFNumber.class);
+            }
             return val.intValue();
         }
         return 0;
@@ -513,15 +652,22 @@ import org.robovm.apple.coregraphics.*;
      * @since Available in iOS 4.0 and later.
      */
     public CGImageProperties setDepth(int depth) {
-        set(Keys.Depth(), CFNumber.valueOf(depth));
+        CFString key = Keys.Depth();
+        NativeObject value = CFNumber.valueOf(depth);
+        data.put(key, value);
         return this;
     }
     /**
      * @since Available in iOS 4.0 and later.
      */
     public CGImagePropertyOrientation getOrientation() {
-        if (has(Keys.Orientation())) {
-            CFNumber val = get(Keys.Orientation(), CFNumber.class);
+        CFString key = Keys.Orientation();
+        if (data.containsKey(key)) {
+            CFNumber val = null;
+            CFString key1 = Keys.Orientation();
+            if (data.containsKey(key1)) {
+                val = data.get(key1, CFNumber.class);
+            }
             return CGImagePropertyOrientation.valueOf(val.longValue());
         }
         return null;
@@ -530,15 +676,22 @@ import org.robovm.apple.coregraphics.*;
      * @since Available in iOS 4.0 and later.
      */
     public CGImageProperties setOrientation(CGImagePropertyOrientation orientation) {
-        set(Keys.Orientation(), CFNumber.valueOf(orientation.value()));
+        CFString key = Keys.Orientation();
+        NativeObject value = CFNumber.valueOf(orientation.value());
+        data.put(key, value);
         return this;
     }
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public boolean containsFloatingPointPixels() {
-        if (has(Keys.IsFloat())) {
-            CFBoolean val = get(Keys.IsFloat(), CFBoolean.class);
+    public boolean isContainingFloatingPointPixels() {
+        CFString key = Keys.IsFloat();
+        if (data.containsKey(key)) {
+            CFBoolean val = null;
+            CFString key1 = Keys.IsFloat();
+            if (data.containsKey(key1)) {
+                val = data.get(key1, CFBoolean.class);
+            }
             return val.booleanValue();
         }
         return false;
@@ -546,16 +699,23 @@ import org.robovm.apple.coregraphics.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public CGImageProperties setContainsFloatingPointPixels(boolean containsFloatingPointPixels) {
-        set(Keys.IsFloat(), CFBoolean.valueOf(containsFloatingPointPixels));
+    public CGImageProperties setContainsFloatingPointPixels(boolean isFloat) {
+        CFString key = Keys.IsFloat();
+        NativeObject value = CFBoolean.valueOf(isFloat);
+        data.put(key, value);
         return this;
     }
     /**
      * @since Available in iOS 4.0 and later.
      */
     public boolean isIndexed() {
-        if (has(Keys.IsIndexed())) {
-            CFBoolean val = get(Keys.IsIndexed(), CFBoolean.class);
+        CFString key = Keys.IsIndexed();
+        if (data.containsKey(key)) {
+            CFBoolean val = null;
+            CFString key1 = Keys.IsIndexed();
+            if (data.containsKey(key1)) {
+                val = data.get(key1, CFBoolean.class);
+            }
             return val.booleanValue();
         }
         return false;
@@ -563,16 +723,23 @@ import org.robovm.apple.coregraphics.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public CGImageProperties setIsIndexed(boolean isIndexed) {
-        set(Keys.IsIndexed(), CFBoolean.valueOf(isIndexed));
+    public CGImageProperties setIndexed(boolean isIndexed) {
+        CFString key = Keys.IsIndexed();
+        NativeObject value = CFBoolean.valueOf(isIndexed);
+        data.put(key, value);
         return this;
     }
     /**
      * @since Available in iOS 4.0 and later.
      */
     public boolean hasAlphaChannel() {
-        if (has(Keys.HasAlpha())) {
-            CFBoolean val = get(Keys.HasAlpha(), CFBoolean.class);
+        CFString key = Keys.HasAlpha();
+        if (data.containsKey(key)) {
+            CFBoolean val = null;
+            CFString key1 = Keys.HasAlpha();
+            if (data.containsKey(key1)) {
+                val = data.get(key1, CFBoolean.class);
+            }
             return val.booleanValue();
         }
         return false;
@@ -580,16 +747,23 @@ import org.robovm.apple.coregraphics.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public CGImageProperties setHasAlphaChannel(boolean hasAlphaChannel) {
-        set(Keys.HasAlpha(), CFBoolean.valueOf(hasAlphaChannel));
+    public CGImageProperties setHasAlphaChannel(boolean alphaChannel) {
+        CFString key = Keys.HasAlpha();
+        NativeObject value = CFBoolean.valueOf(alphaChannel);
+        data.put(key, value);
         return this;
     }
     /**
      * @since Available in iOS 4.0 and later.
      */
     public CGImagePropertyColorModel getColorModel() {
-        if (has(Keys.ColorModel())) {
-            CFString val = get(Keys.ColorModel(), CFString.class);
+        CFString key = Keys.ColorModel();
+        if (data.containsKey(key)) {
+            CFString val = null;
+            CFString key1 = Keys.ColorModel();
+            if (data.containsKey(key1)) {
+                val = data.get(key1, CFString.class);
+            }
             return CGImagePropertyColorModel.valueOf(val);
         }
         return null;
@@ -598,15 +772,22 @@ import org.robovm.apple.coregraphics.*;
      * @since Available in iOS 4.0 and later.
      */
     public CGImageProperties setColorModel(CGImagePropertyColorModel colorModel) {
-        set(Keys.ColorModel(), colorModel.value());
+        CFString key = Keys.ColorModel();
+        NativeObject value = colorModel.value();
+        data.put(key, value);
         return this;
     }
     /**
      * @since Available in iOS 4.0 and later.
      */
     public String getICCProfile() {
-        if (has(Keys.ProfileName())) {
-            CFString val = get(Keys.ProfileName(), CFString.class);
+        CFString key = Keys.ProfileName();
+        if (data.containsKey(key)) {
+            CFString val = null;
+            CFString key1 = Keys.ProfileName();
+            if (data.containsKey(key1)) {
+                val = data.get(key1, CFString.class);
+            }
             return val.toString();
         }
         return null;
@@ -614,8 +795,10 @@ import org.robovm.apple.coregraphics.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public CGImageProperties setICCProfile(String iCCProfile) {
-        set(Keys.ProfileName(), new CFString(iCCProfile));
+    public CGImageProperties setICCProfile(String profile) {
+        CFString key = Keys.ProfileName();
+        NativeObject value = new CFString(profile);
+        data.put(key, value);
         return this;
     }
     /*</methods>*/
