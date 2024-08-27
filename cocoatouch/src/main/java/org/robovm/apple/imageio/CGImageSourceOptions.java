@@ -16,20 +16,11 @@
 package org.robovm.apple.imageio;
 
 /*<imports>*/
-import java.io.*;
-import java.nio.*;
 import java.util.*;
-import org.robovm.objc.*;
-import org.robovm.objc.annotation.*;
-import org.robovm.objc.block.*;
-import org.robovm.rt.*;
-import org.robovm.rt.annotation.*;
+
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
-import org.robovm.rt.bro.ptr.*;
-import org.robovm.apple.foundation.*;
 import org.robovm.apple.corefoundation.*;
-import org.robovm.apple.coregraphics.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -93,27 +84,19 @@ import org.robovm.apple.coregraphics.*;
     /*</constructors>*/
 
     /*<methods>*/
-    public boolean has(CFString key) {
-        return data.containsKey(key);
-    }
-    public <T extends NativeObject> T get(CFString key, Class<T> type) {
-        if (has(key)) {
-            return data.get(key, type);
-        }
-        return null;
-    }
-    public CGImageSourceOptions set(CFString key, NativeObject value) {
-        data.put(key, value);
-        return this;
-    }
-    
+
 
     /**
      * @since Available in iOS 4.0 and later.
      */
     public String getTypeIdentifierHint() {
-        if (has(Keys.TypeIdentifierHint())) {
-            CFString val = get(Keys.TypeIdentifierHint(), CFString.class);
+        CFString key = Keys.TypeIdentifierHint();
+        if (data.containsKey(key)) {
+            CFString val = null;
+            CFString key1 = Keys.TypeIdentifierHint();
+            if (data.containsKey(key1)) {
+                val = data.get(key1, CFString.class);
+            }
             return val.toString();
         }
         return null;
@@ -121,16 +104,23 @@ import org.robovm.apple.coregraphics.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public CGImageSourceOptions setTypeIdentifierHint(String typeIdentifierHint) {
-        set(Keys.TypeIdentifierHint(), new CFString(typeIdentifierHint));
+    public CGImageSourceOptions setTypeIdentifierHint(String typeIdentifier) {
+        CFString key = Keys.TypeIdentifierHint();
+        NativeObject value = new CFString(typeIdentifier);
+        data.put(key, value);
         return this;
     }
     /**
      * @since Available in iOS 4.0 and later.
      */
     public boolean shouldCache() {
-        if (has(Keys.ShouldCache())) {
-            CFBoolean val = get(Keys.ShouldCache(), CFBoolean.class);
+        CFString key = Keys.ShouldCache();
+        if (data.containsKey(key)) {
+            CFBoolean val = null;
+            CFString key1 = Keys.ShouldCache();
+            if (data.containsKey(key1)) {
+                val = data.get(key1, CFBoolean.class);
+            }
             return val.booleanValue();
         }
         return false;
@@ -138,16 +128,23 @@ import org.robovm.apple.coregraphics.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public CGImageSourceOptions setShouldCache(boolean shouldCache) {
-        set(Keys.ShouldCache(), CFBoolean.valueOf(shouldCache));
+    public CGImageSourceOptions setShouldCache(boolean cache) {
+        CFString key = Keys.ShouldCache();
+        NativeObject value = CFBoolean.valueOf(cache);
+        data.put(key, value);
         return this;
     }
     /**
      * @since Available in iOS 7.0 and later.
      */
     public boolean shouldCacheImmediately() {
-        if (has(Keys.ShouldCacheImmediately())) {
-            CFBoolean val = get(Keys.ShouldCacheImmediately(), CFBoolean.class);
+        CFString key = Keys.ShouldCacheImmediately();
+        if (data.containsKey(key)) {
+            CFBoolean val = null;
+            CFString key1 = Keys.ShouldCacheImmediately();
+            if (data.containsKey(key1)) {
+                val = data.get(key1, CFBoolean.class);
+            }
             return val.booleanValue();
         }
         return false;
@@ -155,16 +152,23 @@ import org.robovm.apple.coregraphics.*;
     /**
      * @since Available in iOS 7.0 and later.
      */
-    public CGImageSourceOptions setShouldCacheImmediately(boolean shouldCacheImmediately) {
-        set(Keys.ShouldCacheImmediately(), CFBoolean.valueOf(shouldCacheImmediately));
+    public CGImageSourceOptions setShouldCacheImmediately(boolean cache) {
+        CFString key = Keys.ShouldCacheImmediately();
+        NativeObject value = CFBoolean.valueOf(cache);
+        data.put(key, value);
         return this;
     }
     /**
      * @since Available in iOS 4.0 and later.
      */
     public boolean shouldAllowFloat() {
-        if (has(Keys.ShouldAllowFloat())) {
-            CFBoolean val = get(Keys.ShouldAllowFloat(), CFBoolean.class);
+        CFString key = Keys.ShouldAllowFloat();
+        if (data.containsKey(key)) {
+            CFBoolean val = null;
+            CFString key1 = Keys.ShouldAllowFloat();
+            if (data.containsKey(key1)) {
+                val = data.get(key1, CFBoolean.class);
+            }
             return val.booleanValue();
         }
         return false;
@@ -172,16 +176,23 @@ import org.robovm.apple.coregraphics.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public CGImageSourceOptions setShouldAllowFloat(boolean shouldAllowFloat) {
-        set(Keys.ShouldAllowFloat(), CFBoolean.valueOf(shouldAllowFloat));
+    public CGImageSourceOptions setShouldAllowFloat(boolean allowFloat) {
+        CFString key = Keys.ShouldAllowFloat();
+        NativeObject value = CFBoolean.valueOf(allowFloat);
+        data.put(key, value);
         return this;
     }
     /**
      * @since Available in iOS 4.0 and later.
      */
     public boolean shouldCreateThumbnailFromImageIfAbsent() {
-        if (has(Keys.CreateThumbnailFromImageIfAbsent())) {
-            CFBoolean val = get(Keys.CreateThumbnailFromImageIfAbsent(), CFBoolean.class);
+        CFString key = Keys.CreateThumbnailFromImageIfAbsent();
+        if (data.containsKey(key)) {
+            CFBoolean val = null;
+            CFString key1 = Keys.CreateThumbnailFromImageIfAbsent();
+            if (data.containsKey(key1)) {
+                val = data.get(key1, CFBoolean.class);
+            }
             return val.booleanValue();
         }
         return false;
@@ -189,16 +200,23 @@ import org.robovm.apple.coregraphics.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public CGImageSourceOptions setShouldCreateThumbnailFromImageIfAbsent(boolean shouldCreateThumbnailFromImageIfAbsent) {
-        set(Keys.CreateThumbnailFromImageIfAbsent(), CFBoolean.valueOf(shouldCreateThumbnailFromImageIfAbsent));
+    public CGImageSourceOptions setShouldCreateThumbnailFromImageIfAbsent(boolean createThumbnail) {
+        CFString key = Keys.CreateThumbnailFromImageIfAbsent();
+        NativeObject value = CFBoolean.valueOf(createThumbnail);
+        data.put(key, value);
         return this;
     }
     /**
      * @since Available in iOS 4.0 and later.
      */
     public long getThumbnailMaxPixelSize() {
-        if (has(Keys.ThumbnailMaxPixelSize())) {
-            CFNumber val = get(Keys.ThumbnailMaxPixelSize(), CFNumber.class);
+        CFString key = Keys.ThumbnailMaxPixelSize();
+        if (data.containsKey(key)) {
+            CFNumber val = null;
+            CFString key1 = Keys.ThumbnailMaxPixelSize();
+            if (data.containsKey(key1)) {
+                val = data.get(key1, CFNumber.class);
+            }
             return val.longValue();
         }
         return 0;
@@ -206,16 +224,23 @@ import org.robovm.apple.coregraphics.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public CGImageSourceOptions setThumbnailMaxPixelSize(long thumbnailMaxPixelSize) {
-        set(Keys.ThumbnailMaxPixelSize(), CFNumber.valueOf(thumbnailMaxPixelSize));
+    public CGImageSourceOptions setThumbnailMaxPixelSize(long maxSize) {
+        CFString key = Keys.ThumbnailMaxPixelSize();
+        NativeObject value = CFNumber.valueOf(maxSize);
+        data.put(key, value);
         return this;
     }
     /**
      * @since Available in iOS 4.0 and later.
      */
     public boolean shouldCreateThumbnailWithTransform() {
-        if (has(Keys.CreateThumbnailWithTransform())) {
-            CFBoolean val = get(Keys.CreateThumbnailWithTransform(), CFBoolean.class);
+        CFString key = Keys.CreateThumbnailWithTransform();
+        if (data.containsKey(key)) {
+            CFBoolean val = null;
+            CFString key1 = Keys.CreateThumbnailWithTransform();
+            if (data.containsKey(key1)) {
+                val = data.get(key1, CFBoolean.class);
+            }
             return val.booleanValue();
         }
         return false;
@@ -223,8 +248,10 @@ import org.robovm.apple.coregraphics.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public CGImageSourceOptions setShouldCreateThumbnailWithTransform(boolean shouldCreateThumbnailWithTransform) {
-        set(Keys.CreateThumbnailWithTransform(), CFBoolean.valueOf(shouldCreateThumbnailWithTransform));
+    public CGImageSourceOptions setShouldCreateThumbnailWithTransform(boolean transform) {
+        CFString key = Keys.CreateThumbnailWithTransform();
+        NativeObject value = CFBoolean.valueOf(transform);
+        data.put(key, value);
         return this;
     }
     /*</methods>*/
